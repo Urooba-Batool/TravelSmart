@@ -1,0 +1,165 @@
+/* Navbar */
+/* Navbar */
+.navbar ul li a {
+  position: relative;
+  padding: 10px 15px; /* Adjust as needed */
+  color: var(--color-text);
+  text-decoration: none;
+  overflow: hidden; /* Ensure the wave stays within the link area */
+}
+
+.navbar ul li a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 8px; /* Adjust height for a more prominent wave */
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 20"%3E%3Cpath d="M0 15 Q 20 5 40 15 T 80 15 T 100 15" stroke="%23489bea" stroke-width="6" fill="none"/%3E%3C/svg%3E') no-repeat center bottom;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+.navbar ul li a.active::before,
+.navbar ul li a:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Remove blue background on hover for all links */
+.nav-link {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  background-color: transparent; /* Remove background color on hover */
+}
+
+.nav-link:not(.active) {
+  background-color: transparent; /* Remove background color for non-active links */
+}
+
+/* Adjustments for small screens */
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    text-align: center; /* Center align nav items on mobile */
+  }
+  .navbar-toggler {
+    margin-left: auto;
+  }
+}
+
+/* Footer */
+.footer ul li a {
+  list-style: none;
+  color: black;
+}
+
+/* To Top Button */
+#to-top-button {
+  position: fixed;
+  bottom: 10px;
+  right: 70px;
+  z-index: 1;
+  padding: 10px;
+  text-decoration: none;
+}
+
+/* Page Footer Links */
+.page-footer a {
+  color: var(--color-text);
+}
+
+/* Dark/Light Search Box */
+.darkLight-searchBox {
+  display: flex;
+  align-items: center;
+}
+.darkLight-searchBox .searchToggle {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+}
+.searchToggle i {
+  position: absolute;
+  color: var(--text-color);
+  font-size: 28px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+.searchToggle i.cancel {
+  opacity: 0;
+  pointer-events: none;
+}
+.searchToggle.active i.cancel {
+  opacity: 1;
+  pointer-events: auto;
+}
+.searchToggle.active i.search {
+  opacity: 0;
+  pointer-events: none;
+}
+.searchBox {
+  position: relative;
+}
+.searchBox .search-field {
+  position: absolute;
+  bottom: -85px;
+  right: 5px;
+  height: 50px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  background-color: var(--nav-color);
+  padding: 3px;
+  border-radius: 6px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all .3s ease;
+}
+.searchToggle.active ~ .search-field {
+  bottom: -74px;
+  opacity: 1;
+  pointer-events: auto;
+}
+.search-field::before {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: -4px;
+  height: 12px;
+  width: 12px;
+  background-color: var(--nav-color);
+  transform: rotate(-45deg);
+  z-index: -1;
+}
+.search-field input {
+  height: 100%;
+  width: 100%;
+  padding: 0 45px 0 15px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--nav-color);
+  background-color: var(--search-bar);
+}
+body.dark .search-field input {
+  color: var(--text-color);
+}
+.search-field i {
+  position: absolute;
+  color: var(--nav-color);
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+body.dark .search-field i {
+  color: var(--text-color);
+}
