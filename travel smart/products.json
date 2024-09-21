@@ -1,0 +1,262 @@
+{
+    "destinations": [
+      {
+        "name": "Paris",
+        "image": "images/destinations/paris.jpg",
+        "packages": [
+          {
+            "name": "Single Trip",
+            "price": "500$",
+            "image": "images/package/single.jpg",
+            "description": "A solo journey exploring the city of love.",
+            "places": ["Eiffel Tower", "Louvre Museum"],
+            "adventures": ["Seine River Cruise"],
+            "popularity": 300 
+          },
+          {
+            "name": "Family Trip",
+            "price": "1500$",
+            "image": "images/package/family.jpg",
+            "description": "Fun-filled activities for the whole family.",
+            "places": ["Disneyland Paris", "Versailles"],
+            "adventures": ["Family bike tour", "Picnic at Luxembourg Gardens"],
+            "popularity": 350 
+
+          },
+          {
+            "name": "Luxury Trip",
+            "price": "900$",
+            "image": "images/package/luxury.jpg",
+            "description": "Indulge in a luxurious experience in Paris.",
+            "places": ["Five-star dining", "Private yacht tour"],
+            "adventures": ["Helicopter ride over the city"],
+            "popularity": 400 
+
+          }
+        ]
+      },
+      {
+        "name": "Turkey",
+        "image": "images/destinations/turkey.jpg",
+        "packages": [
+          {
+            "name": "Single Trip",
+            "price": "400$",
+            "image": "images/package/single.jpg",
+            "description": "Discover the rich history and culture on your own.",
+            "places": ["Hagia Sophia", "Topkapi Palace"],
+            "adventures": ["Hot air balloon ride in Cappadocia"],
+            "popularity": 400 
+
+          },
+          {
+            "name": "Family Trip",
+            "price": "1300$",
+            "image": "images/package/family.jpg",
+            "description": "Family-friendly tours and experiences.",
+            "places": ["Blue Mosque", "Grand Bazaar"],
+            "adventures": ["Boat cruise on the Bosphorus"],
+            "popularity": 600 
+
+          },
+          {
+            "name": "Luxury Trip",
+            "price": "1200$",
+            "image": "images/package/luxury.jpg",
+            "description": "Experience Turkey in luxury.",
+            "places": ["Private villa stay", "Exclusive guided tours"],
+            "adventures": ["Private yacht trip", "Gourmet dining experience"],
+            "popularity": 650 
+
+          }
+        ]
+      },
+      {
+        "name": "Maldives",
+        "image": "images/destinations/maldives.jpg",
+        "packages": [
+          {
+            "name": "Single Trip",
+            "price": "700$",
+            "image": "images/package/maldives-single.jpg",
+            "description": "Relax and rejuvenate on the serene beaches.",
+            "places": ["Male", "Sun Island"],
+            "adventures": ["Scuba diving", "Snorkeling"]
+          },
+          {
+            "name": "Family Trip",
+            "price": "1800$",
+            "image": "images/package/maldives-family.jpg",
+            "description": "Perfect vacation spot for the whole family.",
+            "places": ["Kuramathi Island", "Biyadhoo Island"],
+            "adventures": ["Family dolphin cruise", "Glass bottom boat tour"]
+          },
+          {
+            "name": "Luxury Trip",
+            "price": "2500$",
+            "image": "images/package/maldives-luxury.jpg",
+            "description": "Experience the ultimate luxury on private islands.",
+            "places": ["Overwater villas", "Private beach dining"],
+            "adventures": ["Helicopter tour", "Private diving experience"]
+          }
+        ]
+      },
+      {
+        "name": "America",
+        "image": "images/destinations/america.jpg",
+        "packages": [
+          {
+            "name": "Single Trip",
+            "price": "400$",
+            "image": "images/package/single.jpg",
+            "description": "Discover the rich history and culture on your own.",
+            "places": ["Hagia Sophia", "Topkapi Palace"],
+            "adventures": ["Hot air balloon ride in Cappadocia"]
+          },
+          {
+            "name": "Family Trip",
+            "price": "1300$",
+            "image": "images/package/family.jpg",
+            "description": "Family-friendly tours and experiences.",
+            "places": ["Blue Mosque", "Grand Bazaar"],
+            "adventures": ["Boat cruise on the Bosphorus"]
+          },
+          {
+            "name": "Luxury Trip",
+            "price": "1200$",
+            "image": "images/package/luxury.jpg",
+            "description": "ExperiAmerica in luxury.",
+            "places": ["Private villa stay", "Exclusive guided tours"],
+            "adventures": ["Private yacht trip", "Gourmet dining experience"]
+          }
+        ]
+      },
+
+      {
+        "name": "Australia",
+        "image": "images/destinations/austrilia.jpg",
+        "packages": [
+          {
+            "name": "Single Trip",
+            "price": "400$",
+            "image": "images/package/single.jpg",
+            "description": "Discover the rich history and culture on your own.",
+            "places": ["Hagia Sophia", "Topkapi Palace"],
+            "adventures": ["Hot air balloon ride in Cappadocia"]
+          },
+          {
+            "name": "Family Trip",
+            "price": "1300$",
+            "image": "images/package/family.jpg",
+            "description": "Family-friendly tours and experiences.",
+            "places": ["Blue Mosque", "Grand Bazaar"],
+            "adventures": ["Boat cruise on the Bosphorus"]
+          },
+          {
+            "name": "Luxury Trip",
+            "price": "1200$",
+            "image": "images/package/luxury.jpg",
+            "description": "Experience Turkey in luxury.",
+            "places": ["Private villa stay", "Exclusive guided tours"],
+            "adventures": ["Private yacht trip", "Gourmet dining experience"]
+          }
+        ]
+      },
+
+      {
+        "name": "Colombia",
+        "image": "images/destinations/colombia.jpg",
+        "packages": [
+          {
+            "name": "Single Trip",
+            "price": "400$",
+            "image": "images/package/single.jpg",
+            "description": "Discover the rich history and culture on your own.",
+            "places": ["Hagia Sophia", "Topkapi Palace"],
+            "adventures": ["Hot air balloon ride in Cappadocia"]
+          },
+          {
+            "name": "Family Trip",
+            "price": "1300$",
+            "image": "images/package/family.jpg",
+            "description": "Family-friendly tours and experiences.",
+            "places": ["Blue Mosque", "Grand Bazaar"],
+            "adventures": ["Boat cruise on the Bosphorus"]
+          },
+          {
+            "name": "Luxury Trip",
+            "price": "1200$",
+            "image": "images/package/luxury.jpg",
+            "description": "Experience Turkey in luxury.",
+            "places": ["Private villa stay", "Exclusive guided tours"],
+            "adventures": ["Private yacht trip", "Gourmet dining experience"]
+          }
+        ]
+      },
+
+      {
+        "name": "Mexico",
+        "image": "images/destinations/mexico.jpg",
+        "packages": [
+          {
+            "name": "Single Trip",
+            "price": "400$",
+            "image": "images/package/single.jpg",
+            "description": "Discover the rich history and culture on your own.",
+            "places": ["Hagia Sophia", "Topkapi Palace"],
+            "adventures": ["Hot air balloon ride in Cappadocia"]
+          },
+          {
+            "name": "Family Trip",
+            "price": "1300$",
+            "image": "images/package/family.jpg",
+            "description": "Family-friendly tours and experiences.",
+            "places": ["Blue Mosque", "Grand Bazaar"],
+            "adventures": ["Boat cruise on the Bosphorus"]
+          },
+          {
+            "name": "Luxury Trip",
+            "price": "1200$",
+            "image": "images/package/luxury.jpg",
+            "description": "Experience Turkey in luxury.",
+            "places": ["Private villa stay", "Exclusive guided tours"],
+            "adventures": ["Private yacht trip", "Gourmet dining experience"]
+          }
+        ]
+      },
+      {
+        "name": "Canada",
+        "image": "images/destinations/canada.jpg",
+        "packages": [
+          {
+            "name": "Single Trip",
+            "price": "400$",
+            "image": "images/package/single.jpg",
+            "description": "Discover the rich history and culture on your own.",
+            "places": ["Hagia Sophia", "Topkapi Palace"],
+            "adventures": ["Hot air balloon ride in Cappadocia"]
+          },
+          {
+            "name": "Family Trip",
+            "price": "1300$",
+            "image": "images/package/family.jpg",
+            "description": "Family-friendly tours and experiences.",
+            "places": ["Blue Mosque", "Grand Bazaar"],
+            "adventures": ["Boat cruise on the Bosphorus"]
+          },
+          {
+            "name": "Luxury Trip",
+            "price": "1200$",
+            "image": "images/package/luxury.jpg",
+            "description": "Experience Turkey in luxury.",
+            "places": ["Private villa stay", "Exclusive guided tours"],
+            "adventures": ["Private yacht trip", "Gourmet dining experience"]
+          }
+        ]
+      }
+
+
+      
+    ]
+  }
+  

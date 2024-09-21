@@ -1,0 +1,146 @@
+
+<!-- miss ka code hai -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>all Products</title>
+    <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <input type="text" id="searchHere" class="form-control" placeholder="search heare...">
+        <h1 class="text-center p-4">All Products</h1>
+        <div class="row" id="productsRow">
+
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="mId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12"><img class="card-img-top" src="" id="modalImg" alt=""></div>
+                        </div>
+                        <div class="row">
+                            <h3 class="p-3" id="modalPrice"></h3>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="jquery/jquery-3.7.1.js"></script>
+    <script src="bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+    <script>
+
+
+
+        $.ajax({
+            url: "products.json",
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                let productContainer = $("#productsRow");
+                let myAllKeys = Object.keys(response);
+                // console.log(myAllKeys);
+               function myProducts(){
+                $.each(myAllKeys, function (cIndex, cName) {
+                    // console.log(cName);
+                    let products = response[cName];
+                    console.log(products);
+                    productContainer.append(` <div class="col-md-12"><h1 class="p-3 ">` + cName + `</h1></div>`);
+                    $.each(products, function (k, v) {
+                        let col = `
+                          <div class="col-md-3 p-4">
+                    <div class="card">
+                        <img class="card-img-top" src="`+ v.image + `" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">`+ v.name + `</h4>
+                            <p class="card-text text-danger">`+ v.price + `</p>
+                            <button  data-category="`+ cName + `" data-id="` + v.id + `" class="btn btn-primary col-12 btn-detail">details</button>
+                        </div>
+                    </div>
+                </div>
+                 `
+                        productContainer.append(col);
+                    })
+                })
+                
+              
+                // each method end 
+            }
+            // function end
+            myProducts();  
+                // modal work start
+                $(document).on('click','.btn-detail',function () {
+                    let productId = $(this).data('id'); //this target on button and data finds data attr value ;
+                    let category = $(this).data('category');
+                    // object['Bags'] Object['Shoes'] Object['perfumes'] => [{},{},{}]
+                    let product = response[category].find(pr => pr.id === productId);
+                    $(".modal-title").text(product.name);
+                    $("#modalImg").attr('src', product.image);
+                    $("#modalPrice").text(product.price);
+
+                    $("#mId").modal('show');
+                })   //modal end
+                $("#searchHere").keyup(function () {
+                    let userSearchVal = $(this).val();
+                    // console.log(userSearchVal);
+                    productContainer.empty();
+                    let myCategories = Object.keys(response);
+                    // console.log(myCategories);   
+                    $.each(myCategories, function (cIndex, cName) {
+                        let products = response[cName];
+                        // console.log('hello');
+                        let myFinalProducts = products.filter(pro=>pro.name.toLowerCase().includes  (userSearchVal));
+                            //  console.log(myFinalProducts);
+
+                            if(myFinalProducts.length>0){
+                                    myFinalProducts.forEach(element => {
+                                      let  col = `
+                          <div class="col-md-3 p-4">
+                    <div class="card">
+                        <img class="card-img-top" src="`+ element.image + `" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title ">`+ element.name + `</h4>
+                            <p class="card-text">`+ element.price + `</p>
+                            <button  data-category="`+ cName + `" data-id="` + element.id + `" class="btn btn-primary col-12 btn-detail">details</button>
+                            
+                        </div>
+                    </div>
+                </div>
+                 `            
+                   productContainer.append(col);
+                                    });
+                            }                         
+                        
+                    })
+                })
+
+            } // yahan pr success end ho raha ha   
+        })
+
+
+    </script>
+</body>
+
+</html>

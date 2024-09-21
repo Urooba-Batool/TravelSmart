@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+    <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css">
+    <style>
+        .country-card {
+            width: 100%;
+            
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .country-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .trip-type-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        #backButton {
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+
+
+        /* model */
+        /* Modal Image */
+#modalImg {
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Modal Title */
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Modal Body Styling */
+.modal-body {
+    padding: 20px;
+}
+
+.modal-body h4 {
+    margin-top: 15px;
+    font-size: 1.25rem;
+}
+
+.modal-body p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.modal-body ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-left: 0;
+}
+
+.modal-body li {
+    margin-bottom: 5px;
+}
+
+/* Button Styles */
+.modal-footer .btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.modal-footer .btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center p-4">Countries</h1>
+
+        <div class="mb-4">
+            <label for="sortSelect">Sort by:</label>
+            <select id="sortSelect" class="form-control">
+                <option value="name">Alphabetical Order</option>
+                <option value="price">Price</option>
+                <option value="popularity">Popularity</option>
+            </select>
+        </div>
+
+        <!-- Search Input -->
+        <div class="mb-4">
+            <input type="text" id="searchHere" class="form-control" placeholder="Search trips...">
+        </div>
+
+        <div class="row" id="countriesRow"></div>
+
+        <h1 class="text-center p-4 d-none" id="tripTypesHeading">Trip Types</h1>
+        <button class="btn btn-secondary mb-4 d-none" id="backButton">Back to Countries</button>
+        <div class="row d-none" id="tripTypesRow"></div>
+
+        <!-- <div class="modal fade" id="mId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12"><img class="card-img-top" src="" id="modalImg" alt=""></div>
+                        </div>
+                        <div class="row">
+                            <h3 class="p-3" id="modalPrice"></h3>
+                        </div>
+                        <div class="row">
+                            <p class="p-3" id="modalDesc"></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    
+    
+        <div class="modal fade" id="mId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modelTitleId">Trip Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img class="img-fluid rounded" src="" id="modalImg" alt="Package Image">
+                            </div>
+                            <div class="col-md-6">
+                                <h4 id="modalTitle" class="font-weight-bold"></h4>
+                                <p id="modalPrice" class="text-muted"></p>
+                                <p id="modalDesc"></p>
+                                <h5 class="font-weight-bold">Places Included:</h5>
+                                <ul id="modalPlaces" class="list-unstyled"></ul>
+                                <h5 class="font-weight-bold">Adventures Included:</h5>
+                                <ul id="modalAdventures" class="list-unstyled"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="jquery/jquery-3.7.1.js"></script>
+    <script src="bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+<script>
+
+$(document).ready(function () {
+    let currentCountry = null; // Store the currently selected country
+    let data = null; // To hold the loaded JSON data
+
+    // AJAX call to load data from JSON file
+    $.ajax({
+        url: 'products.json',
+        dataType: 'json',
+        success: function (loadedData) {
+            data = loadedData; // Store loaded data
+            displayCountries(); // Initially display countries
+        },
+        error: function () {
+            console.error("Failed to load JSON data");
+        }
+    });
+
+    function displayCountries(sortBy = 'name') {
+        const countriesRow = $("#countriesRow");
+        countriesRow.empty(); // Clear previous content
+        let destinations = [...data.destinations];
+
+        // Sort countries
+        if (sortBy === 'name') {
+            destinations.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (sortBy === 'popularity') {
+            destinations.sort((a, b) => b.popularity - a.popularity); // Assuming 'popularity' exists
+        }
+
+        $.each(destinations, function (index, destination) {
+            let col = `
+                <div class="col-md-4 p-4">
+                    <div class="card country-card" data-country="${destination.name}">
+                        <img class="card-img-top" src="${destination.image}" alt="${destination.name}">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">${destination.name}</h4>
+                        </div>
+                    </div>
+                </div>
+            `;
+            countriesRow.append(col);
+        });
+    }
+    function displayTrips(trips, sortBy) {
+    const tripTypesRow = $("#tripTypesRow");
+    tripTypesRow.empty(); // Clear previous content
+
+    // Sort trips
+    if (sortBy === 'name') {
+        trips.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === 'price') {
+        trips.sort((a, b) => parseFloat(a.price.replace(/[^0-9.-]+/g, "")) - parseFloat(b.price.replace(/[^0-9.-]+/g, "")));
+    } else if (sortBy === 'popularity') {
+        trips.sort((a, b) => b.popularity - a.popularity); // Assuming 'popularity' exists
+    }
+
+    trips.forEach(package => {
+        let col = `
+            <div class="col-md-4 p-4">
+                <div class="card trip-type-card" data-toggle="modal" data-target="#mId" 
+                    data-name="${package.name}" 
+                    data-image="${package.image}" 
+                    data-price="${package.price}" 
+                    data-description="${package.description}"
+                    data-places='${JSON.stringify(package.places)}' 
+                    data-adventures='${JSON.stringify(package.adventures)}'>
+                    <img class="card-img-top" src="${package.image}" alt="${package.name}">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">${package.name} Trip</h4>
+                    </div>
+                </div>
+            </div>
+        `;
+        tripTypesRow.append(col);
+    });
+}
+
+
+    // Event listener for country click
+    $(document).on('click', '.country-card', function () {
+        currentCountry = $(this).data('country');
+        let selectedCountry = data.destinations.find(dest => dest.name === currentCountry);
+        displayTrips(selectedCountry.packages, $("#sortSelect").val());
+        $("#countriesRow").addClass("d-none");
+        $("#tripTypesRow, #tripTypesHeading, #backButton").removeClass("d-none");
+    });
+
+    // Sort change event listener
+    $('#sortSelect').on('change', function () {
+        let selectedSort = $(this).val();
+        if (currentCountry) {
+            let selectedCountry = data.destinations.find(dest => dest.name === currentCountry);
+            displayTrips(selectedCountry.packages, selectedSort);
+        } else {
+            displayCountries(selectedSort);
+        }
+    });
+
+    // Back button event listener
+    $("#backButton").on('click', function () {
+        $("#tripTypesRow, #tripTypesHeading, #backButton").addClass("d-none");
+        $("#countriesRow").removeClass("d-none");
+    });
+
+    // Modal event listener
+   // Modal event listener
+$(document).on('click', '.trip-type-card', function () {
+    const name = $(this).data('name');
+    const image = $(this).data('image');
+    const price = $(this).data('price');
+    const description = $(this).data('description');
+    const places = $(this).data('places');
+    const adventures = $(this).data('adventures');
+
+    // Set modal content
+    $('.modal-title').text(name + ' Trip');
+    $('#modalImg').attr('src', image);
+    $('#modalPrice').text('Price: ' + price);
+    $('#modalDesc').text(description);
+
+    // Clear and append places
+    $('#modalPlaces').empty();
+    if (places) {
+        JSON.parse(places).forEach(place => {
+            $('#modalPlaces').append(`<li>${place}</li>`);
+        });
+    } else {
+        $('#modalPlaces').append('<li>No places available</li>');
+    }
+
+    // Clear and append adventures
+    $('#modalAdventures').empty();
+    if (adventures) {
+        JSON.parse(adventures).forEach(adventure => {
+            $('#modalAdventures').append(`<li>${adventure}</li>`);
+        });
+    } else {
+        $('#modalAdventures').append('<li>No adventures available</li>');
+    }
+
+    // Show modal
+    $('#mId').modal('show');
+});
+
+
+    // Search functionality
+    $("#searchHere").keyup(function () {
+        let userSearchVal = $(this).val().toLowerCase(); // Convert input to lowercase
+        const countriesRow = $("#countriesRow");
+        countriesRow.empty(); // Clear previous results
+
+        let filteredCountries = data.destinations.filter(destination => 
+            destination.name.toLowerCase().includes(userSearchVal)
+        );
+
+        filteredCountries.forEach(destination => {
+            let col = `
+                <div class="col-md-4 p-4">
+                    <div class="card country-card" data-country="${destination.name}">
+                        <img class="card-img-top" src="${destination.image}" alt="${destination.name}">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">${destination.name}</h4>
+                        </div>
+                    </div>
+                </div>
+            `;
+            countriesRow.append(col);
+        });
+    });
+});
+
+</script>
+</body>
+</html>
